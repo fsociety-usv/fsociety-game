@@ -22,6 +22,7 @@ public class Jump : MonoBehaviour
 
     private bool _desiredJump, _onGround, _isJumping;
 
+    public Animator animator;
 
     // Start is called before the first frame update
     void Awake()
@@ -37,6 +38,8 @@ public class Jump : MonoBehaviour
     void Update()
     {
         _desiredJump |= _controller.input.RetrieveJumpInput();
+
+        animator.SetBool("isJumping", !(_ground.OnGround));
     }
 
     private void FixedUpdate()

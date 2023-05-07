@@ -17,6 +17,8 @@ public class Move : MonoBehaviour
     private float _maxSpeedChange, _acceleration;
     private bool _onGround;
 
+    public Animator animator;
+
     private void Awake()
     {
         _body = GetComponent<Rigidbody2D>();
@@ -27,6 +29,21 @@ public class Move : MonoBehaviour
     private void Update()
     {
         _direction.x = _controller.input.RetrieveMoveInput();
+
+        Transform characterTransform = GetComponent<Transform>();
+
+        if (_direction.x > 0)
+        {
+            characterTransform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+
+        if (_direction.x < 0)
+        {
+            characterTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+
+        animator.SetFloat("Speed", Mathf.Abs(_direction.x));
+
         _desiredVelocity = new Vector2(_direction.x, 0f) * Mathf.Max(_maxSpeed - _ground.Friction, 0f);
     }
 
