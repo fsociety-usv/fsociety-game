@@ -34,12 +34,12 @@ public class Move : MonoBehaviour
 
         if (_direction.x > 0)
         {
-            characterTransform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            characterTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
 
         if (_direction.x < 0)
         {
-            characterTransform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            characterTransform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
 
         animator.SetFloat("Speed", Mathf.Abs(_direction.x));
