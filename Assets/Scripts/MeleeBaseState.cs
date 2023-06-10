@@ -83,7 +83,8 @@ public class MeleeBaseState : State
                     Transform hitEffectTransform = hitEffectInstance.transform;
                     Vector3 newPos = hitEffectTransform.position + Vector3.up * yOffset;
                     hitEffectTransform.position = newPos;
-                    Debug.Log("Enemy Has Taken:" + attackIndex + "Damage");
+                    hitTeamComponent.TakeDamage(25);
+                    Debug.Log("Enemy Has :" + hitTeamComponent.health + " Health");
                     collidersDamaged.Add(collidersToDamage[i]);
                 }
             }
