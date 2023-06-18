@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-public class BossWeapon : MonoBehaviour
+public class FinalBossWeapon : MonoBehaviour
 {
 	public int attackDamage = 20;
 	public int enragedAttackDamage = 40;
