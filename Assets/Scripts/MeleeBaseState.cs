@@ -84,7 +84,6 @@ public class MeleeBaseState : State
                     Vector3 newPos = hitEffectTransform.position + Vector3.up * yOffset;
                     hitEffectTransform.position = newPos;
                     hitTeamComponent.TakeDamage(25);
-                    Debug.Log("Enemy Has :" + hitTeamComponent.health + " Health");
                     collidersDamaged.Add(collidersToDamage[i]);
                 }
             }
