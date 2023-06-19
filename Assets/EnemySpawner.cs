@@ -5,17 +5,16 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab; // Prefab-ul inamicului
-    public float spawnRate = 2f; // Ritmul de spawn al inamicilor
-    public float spawnDelay = 2f; // Întârziere inițială înainte de a începe spawn-ul
-    public Quaternion initialRotation; // Rotirea inițială a inamicului
-    private Transform playerTransform;
+    public GameObject enemyPrefab;
+    public float spawnRate = 5f;
+    public float spawnDelay = 2f;
+    public int nrEnemy = 2;
+    public FinalBossSpawner finalBossSpawner;
 
     private void Start()
     {
-        //var playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        finalBossSpawner = FindObjectOfType<FinalBossSpawner>();
 
-        // Începe un co-rutină care va genera inamici
         StartCoroutine(SpawnEnemies());
     }
 
@@ -23,13 +22,15 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(spawnDelay);
 
-        while (true)
+        while (nrEnemy > 0)
         {
             GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.Euler(0f, 180f, 0f));
-            //enemy.transform.rotation = playerTransform.rotation;
-            
 
             yield return new WaitForSeconds(spawnRate);
+
+            nrEnemy--;
         }
+
+        yield return StartCoroutine(finalBossSpawner.SpawnEnemies());
     }
 }

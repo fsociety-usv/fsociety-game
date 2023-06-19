@@ -42,14 +42,7 @@ public class TeamComponent : MonoBehaviour
 
         if (health <= 0)
         {
-            animator.SetBool("death", true);
-            Invoke("Despawn", 3f); // Delayed despawn after 3 seconds
+            Destroy(gameObject);
         }
-    }
-
-    private void Despawn()
-    {
-        // Destroy the enemy object after the delay
-        Destroy(gameObject);
     }
 }
