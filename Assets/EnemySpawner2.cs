@@ -1,20 +1,16 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
-
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner2 : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public float spawnRate = 5f;
     public float spawnDelay = 2f;
     public int nrEnemy = 5;
-    public FinalBossSpawner finalBossSpawner;
 
     private void Start()
     {
-        finalBossSpawner = FindObjectOfType<FinalBossSpawner>();
-
         StartCoroutine(SpawnEnemies());
     }
 
@@ -24,15 +20,13 @@ public class EnemySpawner : MonoBehaviour
 
         while (nrEnemy > 0)
         {
-            GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.Euler(0f, 180f, 0f));
+            GameObject enemy2 = Instantiate(enemyPrefab, transform.position, Quaternion.Euler(0f, 180f, 0f));
 
-            enemy.GetComponent<Boss>().isFlipped = true;
+            enemy2.GetComponent<Boss>().isFlipped = true;
 
             yield return new WaitForSeconds(spawnRate);
 
             nrEnemy--;
         }
-
-        yield return StartCoroutine(finalBossSpawner.SpawnEnemies());
     }
 }

@@ -5,7 +5,7 @@ public class StartButton : MonoBehaviour
 {
     public void OnStartButtonClicked()
     {
-        SceneManager.LoadScene("Scenes/SampleScene"); 
+        SceneManager.LoadScene("Scenes/SampleScene"); //NumeScenaJoc
     }
 }
 

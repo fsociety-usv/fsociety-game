@@ -5,31 +5,27 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    public Transform player;
+	public Transform player;
 
-    private Vector3 initialScale;
+	public bool isFlipped = false;
 
-    private void Start()
-    {
-        initialScale = transform.localScale;
-    }
+	public void LookAtPlayer()
+	{
+		Vector3 flipped = transform.localScale;
+		flipped.z *= -1f;
 
-    private void Update()
-    {
-        LookAtPlayer();
-    }
+		if (transform.position.x > player.position.x && isFlipped)
+		{
+			transform.localScale = flipped;
+			transform.Rotate(0f, 180f, 0f);
+			isFlipped = false;
+		}
+		else if (transform.position.x < player.position.x && !isFlipped)
+		{
+			transform.localScale = flipped;
+			transform.Rotate(0f, 180f, 0f);
+			isFlipped = true;
 
-    public void LookAtPlayer()
-    {
-        Vector3 direction = player.position - transform.position;
-
-        if (direction.x < 0f && transform.localScale.x > 0f)
-        {
-            transform.localScale = new Vector3(-initialScale.x, initialScale.y, initialScale.z);
-        }
-        else if (direction.x > 0f && transform.localScale.x < 0f)
-        {
-            transform.localScale = new Vector3(initialScale.x, initialScale.y, initialScale.z);
-        }
-    }
+		}
+	}
 }
